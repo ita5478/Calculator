@@ -8,6 +8,8 @@ namespace Calculator.Core.Implementations.BinaryOperations
         {
         }
 
+        public override int Precedence { get; } = 0;
+
         public override float Calculate()
         {
             return FirstOperand.Calculate() + SecondOperand.Calculate();
