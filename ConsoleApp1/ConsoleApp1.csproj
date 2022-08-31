@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Calculator.BL\Calculator.BL.csproj" />
+    <ProjectReference Include="..\Calculator.Common\Calculator.Common.csproj" />
     <ProjectReference Include="..\Calculator.Core\Calculator.Core.csproj" />
   </ItemGroup>
 

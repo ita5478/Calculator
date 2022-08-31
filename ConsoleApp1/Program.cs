@@ -1,7 +1,6 @@
-﻿using Calculator.Core.Implementations;
-using Calculator.Core.Implementations.BinaryOperations;
+﻿using System.Text.RegularExpressions;
+using ConsoleApp1.Implementations;
 
-var number = new CalculatableNumber(5);
-var secondNumber = new CalculatableNumber(3);
-var addition = new Addition(number, secondNumber);
-Console.WriteLine(addition.Calculate());
+string expression = "[3+4(5 /2)+4.5]";
+var parser = new ExpressionParser();
+parser.Parse(expression);
