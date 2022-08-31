@@ -36,9 +36,9 @@ namespace Calculator.BL.Implementations
                 }
             }
 
-            while (operators.TryPeek(out var oper))
+            while (operators.Count > 0)
             {
-                output.Enqueue(oper);
+                output.Enqueue(operators.Pop());
             }
 
             return output.ToList();
