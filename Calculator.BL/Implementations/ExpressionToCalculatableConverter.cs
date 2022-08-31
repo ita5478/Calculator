@@ -32,9 +32,9 @@ namespace Calculator.BL.Implementations
                         break;
                     case TokenType.BinaryOperation:
                         var factory = _binaryOperationsFactories[token.Value];
-                        var firstOperand = operands.Pop();
-                        var secondOperand = operands.Pop();
-                        operands.Push(factory.Create(firstOperand, secondOperand));
+                        var rightOperand = operands.Pop();
+                        var leftOperand = operands.Pop();
+                        operands.Push(factory.Create(leftOperand, rightOperand));
                         break;
                 }
             }
