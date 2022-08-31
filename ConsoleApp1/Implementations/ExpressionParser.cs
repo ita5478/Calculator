@@ -20,8 +20,9 @@ namespace ConsoleApp1.Implementations
         {
             var tokens = Regex.Split(input, EXPRESSION_SPLITTING_REGEX)
                 .Where(rawToken => !string.IsNullOrEmpty(rawToken) && !string.IsNullOrWhiteSpace(rawToken))
-                .Select(token => _tokenizer.Tokenize(token));
-            return null;
+                .Select(token => _tokenizer.Tokenize(token))
+                .ToArray();
+            return tokens;
         }
     }
 }
