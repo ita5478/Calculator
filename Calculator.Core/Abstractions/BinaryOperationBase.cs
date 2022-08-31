@@ -1,10 +1,9 @@
 ﻿namespace Calculator.Core.Abstractions
 {
-    public abstract class BinaryOperationBase : ICalculatable, IOperation
+    public abstract class BinaryOperationBase : ICalculatable
     {
         protected readonly ICalculatable FirstOperand;
         protected readonly ICalculatable SecondOperand;
-        public abstract int Precedence { get; }
         protected BinaryOperationBase(ICalculatable firstOperand, ICalculatable secondOperand)
         {
             FirstOperand = firstOperand;

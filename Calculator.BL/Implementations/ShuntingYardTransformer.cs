@@ -1,14 +1,17 @@
 ﻿using Calculator.BL.Enums;
 using Calculator.Common.Abstractions;
+using Calculator.Core.Abstractions;
 
 namespace Calculator.BL.Implementations
 {
     public class ShuntingYardTransformer : ITransformer<IList<Token>>
     {
-        private readonly IDictionary<string, int> _precedenceOrder = new Dictionary<string, int>()
+        private readonly IDictionary<string, IOperationPrecedence> _precedenceOrder;
+
+        public ShuntingYardTransformer(IDictionary<string, IOperationPrecedence> precedenceOrder)
         {
-            {"+", 0},
-        };
+            _precedenceOrder = precedenceOrder;
+        }
 
         public IList<Token> Transform(IList<Token> input)
         {
@@ -27,7 +30,7 @@ namespace Calculator.BL.Implementations
                         break;
                     case TokenType.BinaryOperation:
                         while (operators.TryPeek(out var topOperator) && topOperator.Type is not TokenType.OpeningBracket &&
-                               _precedenceOrder[topOperator.Value] > _precedenceOrder[token.Value])
+                               _precedenceOrder[topOperator.Value].Precedence > _precedenceOrder[token.Value].Precedence)
                         {
                             output.Enqueue(operators.Pop());
                         }

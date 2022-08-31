@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Core.Abstractions
 {
-    public interface IOperation
+    public interface IOperationPrecedence
     {
         int Precedence { get; }
     }
