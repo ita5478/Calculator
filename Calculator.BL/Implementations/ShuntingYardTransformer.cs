@@ -26,15 +26,22 @@ namespace Calculator.BL.Implementations
                         output.Enqueue(token);
                         break;
                     case TokenType.BinaryOperation:
-                        var topOperator = operators.Peek();
-                        while (operators.Count > 0 && topOperator.Type is not TokenType.OpeningBracket &&
+                        while (operators.TryPeek(out var topOperator) && topOperator.Type is not TokenType.OpeningBracket &&
                                _precedenceOrder[topOperator.Value] > _precedenceOrder[token.Value])
                         {
-
+                            output.Enqueue(operators.Pop());
                         }
+                        operators.Push(token);
                         break;
                 }
             }
+
+            while (operators.TryPeek(out var oper))
+            {
+                output.Enqueue(oper);
+            }
+
+            return output.ToList();
         }
     }
 }
