@@ -1,9 +1,12 @@
 ﻿using System.Text.RegularExpressions;
+using Calculator.Core.Abstractions;
+using Calculator.Core.Implementations.BinaryOperationFactories;
+using Calculator.Core.Implementations.BinaryOperations;
 using ConsoleApp1.Implementations;
 
-var binaryOperations = new List<string>()
+var binaryOperations = new Dictionary<string, IBinaryOperationFactory>()
 {
-    "+",
+    {"+", new AdditionFactory()}
 };
 
 var brackets = new Dictionary<string, string>()
@@ -14,7 +17,7 @@ var brackets = new Dictionary<string, string>()
 
 var numbersValidator = new NumbersValidator();
 
-var tokenizer = new Tokenizer(numbersValidator, binaryOperations, brackets);
+var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), brackets);
 var parser = new ExpressionParser(tokenizer);
 
 string expression = "[3+4(5 /2)+4.5]";
