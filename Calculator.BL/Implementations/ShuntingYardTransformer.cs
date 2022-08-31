@@ -25,9 +25,6 @@ namespace Calculator.BL.Implementations
 
                 switch (token.Type)
                 {
-                    case TokenType.Number:
-                        output.Enqueue(token);
-                        break;
                     case TokenType.BinaryOperation:
                         while (operators.TryPeek(out var topOperator) && topOperator.Type is not TokenType.OpeningBracket &&
                                _precedenceOrder[topOperator.Value].Precedence > _precedenceOrder[token.Value].Precedence)
@@ -35,6 +32,25 @@ namespace Calculator.BL.Implementations
                             output.Enqueue(operators.Pop());
                         }
                         operators.Push(token);
+                        break;
+                    case TokenType.Number:
+                        output.Enqueue(token);
+                        break;
+                    case TokenType.OpeningBracket:
+                        operators.Push(token);
+                        break;
+                    case TokenType.ClosingBracket:
+                        while (operators.TryPeek(out var oper) && oper.Type is not TokenType.OpeningBracket)
+                        {
+                            output.Enqueue(operators.Pop());
+                        }
+
+                        if (operators.Count == 0)
+                        {
+                            // throw exception
+                        }
+
+                        operators.Pop();
                         break;
                 }
             }
@@ -44,6 +60,7 @@ namespace Calculator.BL.Implementations
                 output.Enqueue(operators.Pop());
             }
 
+            Console.WriteLine(string.Join(' ', output.Select(oper => oper.Value)));
             return output.ToList();
         }
     }
