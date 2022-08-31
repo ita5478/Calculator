@@ -14,7 +14,12 @@ namespace ConsoleApp1.Implementations
     public class ExpressionParser : IParser<IEnumerable<Token>>
     {
         private const string EXPRESSION_SPLITTING_REGEX = @"([*+/\-)(])|([0-9.]+|.)";
-        private readonly ITokenizer _tokenizer = new Tokenizer();
+        private readonly ITokenizer _tokenizer;
+
+        public ExpressionParser(ITokenizer tokenizer)
+        {
+            _tokenizer = tokenizer;
+        }
 
         public IEnumerable<Token> Parse(string input)
         {
