@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Calculator.Core.Implementations;
+
+var number = new CalculatableNumber(5);
+Console.WriteLine(number.Calculate());
