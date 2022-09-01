@@ -60,7 +60,6 @@ namespace Calculator.BL.Implementations
                 output.Enqueue(operators.Pop());
             }
 
-            Console.WriteLine(string.Join(' ', output.Select(oper => oper.Value)));
             return output.ToList();
         }
     }
