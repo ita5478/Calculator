@@ -1,8 +1,8 @@
-﻿using System.Data;
-using System.Text.RegularExpressions;
-using Calculator.BL;
+﻿using Calculator.BL;
 using Calculator.Common.Abstractions;
 using Calculator.UI.Abstractions;
+using System.Data;
+using System.Text.RegularExpressions;
 
 namespace Calculator.UI.Implementations
 {

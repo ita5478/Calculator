@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Calculator.Core.Abstractions;
+﻿using Calculator.Core.Abstractions;
 
 namespace Calculator.Core.Implementations.BinaryOperations
 {

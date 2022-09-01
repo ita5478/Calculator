@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using Calculator.BL.Abstractions;
-using Calculator.BL.Enums;
+﻿using Calculator.BL.Abstractions;
 using Calculator.BL.Exceptions;
 using Calculator.Common.Abstractions;
 using Calculator.Core.Abstractions;
-using Calculator.Core.Implementations;
 
 namespace Calculator.BL.Implementations
 {
@@ -33,7 +30,7 @@ namespace Calculator.BL.Implementations
             {
                 throw new MissingOperatorException();
             }
-            
+
             return operands.Pop();
         }
     }

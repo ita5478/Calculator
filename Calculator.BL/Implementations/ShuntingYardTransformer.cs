@@ -8,10 +8,13 @@ namespace Calculator.BL.Implementations
     public class ShuntingYardTransformer : ITransformer<IList<Token>>
     {
         private readonly IDictionary<string, IOperationPrecedence> _precedenceOrder;
-
-        public ShuntingYardTransformer(IDictionary<string, IOperationPrecedence> precedenceOrder)
+        private readonly IEnumerable<BracketPair> _bracketPairs;
+        public ShuntingYardTransformer(
+            IDictionary<string, IOperationPrecedence> precedenceOrder,
+            IEnumerable<BracketPair> bracketPairs)
         {
             _precedenceOrder = precedenceOrder;
+            _bracketPairs = bracketPairs;
         }
 
         public IList<Token> Transform(IList<Token> input)
@@ -42,6 +45,8 @@ namespace Calculator.BL.Implementations
                         operators.Push(token);
                         break;
                     case TokenType.ClosingBracket:
+                        var bracketPair = _bracketPairs.FirstOrDefault(bracketPair => bracketPair.IsClosingBracket(token.Value));
+
                         while (operators.TryPeek(out var oper) && oper.Type is not TokenType.OpeningBracket)
                         {
                             output.Enqueue(operators.Pop());
@@ -49,9 +54,15 @@ namespace Calculator.BL.Implementations
 
                         if (operators.Count == 0)
                         {
-                            throw new OpeningBracketMissingException();
+                            throw new OpeningBracketMissingException(bracketPair.OpeningBracket);
                         }
-                        operators.Pop();
+
+                        var discardedOpeningBracket = operators.Pop();
+
+                        if (!bracketPair.IsOpeningBracket(discardedOpeningBracket.Value))
+                        {
+                            throw new MismatchedBracketPairException(discardedOpeningBracket.Value, token.Value);
+                        }
 
                         if (operators.TryPeek(out var o) && o.Type is TokenType.UnaryOperation)
                         {
@@ -66,7 +77,9 @@ namespace Calculator.BL.Implementations
                 var oper = operators.Pop();
                 if (oper.Type is TokenType.OpeningBracket)
                 {
-                    throw new ClosingBracketMissingException();
+                    var bracketPair =
+                        _bracketPairs.FirstOrDefault(bracketPair => bracketPair.IsOpeningBracket(oper.Value));
+                    throw new ClosingBracketMissingException(bracketPair.ClosingBracket);
                 }
 
                 output.Enqueue(oper);

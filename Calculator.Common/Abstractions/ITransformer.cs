@@ -2,7 +2,7 @@
 
 namespace Calculator.Common.Abstractions
 {
-    public interface ITransformer<T> where T: IEnumerable
+    public interface ITransformer<T> where T : IEnumerable
     {
         T Transform(T input);
     }
