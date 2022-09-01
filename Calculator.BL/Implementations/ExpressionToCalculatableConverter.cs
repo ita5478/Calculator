@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Calculator.BL.Abstractions;
 using Calculator.BL.Enums;
+using Calculator.BL.Exceptions;
 using Calculator.Common.Abstractions;
 using Calculator.Core.Abstractions;
 using Calculator.Core.Implementations;
@@ -28,6 +29,11 @@ namespace Calculator.BL.Implementations
                 _tokenActionHandler.HandleAction(token, operands);
             }
 
+            if (operands.Count > 1)
+            {
+                throw new MissingOperatorException();
+            }
+            
             return operands.Pop();
         }
     }
