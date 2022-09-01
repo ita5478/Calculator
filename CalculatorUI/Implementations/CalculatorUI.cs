@@ -26,7 +26,6 @@ namespace CalculatorUI.Implementations
             }
             catch (Exception ex)
             {
-                throw;
                 return ex.Message;
             }
         }
