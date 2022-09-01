@@ -13,7 +13,7 @@ namespace ConsoleApp1
     {
         public CalculatorUi Initialize()
         {
-            string expressionSplittingRegex = @"\b(sqrt)\b|([*+/\-)(])|([0-9.]+|.)";
+            string expressionSplittingRegex = @"\b(sqrt|abs)\b|([*+/\-)(])|([0-9.]+|.)";
 
             var binaryOperations = new Dictionary<string, IBinaryOperationFactory>()
             {
@@ -26,11 +26,17 @@ namespace ConsoleApp1
             {
                 {"-", new MinusFactory()},
                 {"sqrt", new SquareRootFactory()},
+                {"abs", new AbsoluteFactory()},
             };
 
             var operationsPrecedence = binaryOperations.ToDictionary(
                 item => item.Key,
                 item => item.Value as IOperationPrecedence);
+
+            foreach (var unaryOperation in unaryOperations.Keys)
+            {
+                operationsPrecedence.Add(unaryOperation, unaryOperations[unaryOperation]);
+            }
 
             var brackets = new Dictionary<string, string>()
             {
