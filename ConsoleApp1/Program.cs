@@ -4,6 +4,7 @@ using Calculator.BL.Implementations;
 using Calculator.Core.Abstractions;
 using Calculator.Core.Implementations.BinaryOperationFactories;
 using Calculator.Core.Implementations.BinaryOperations;
+using CalculatorUI.Implementations;
 using ConsoleApp1.Implementations;
 
 var binaryOperations = new Dictionary<string, IBinaryOperationFactory>()
@@ -31,5 +32,5 @@ var transformer = new ShuntingYardTransformer(operationsPrecedence);
 var expressionConverter = new ExpressionToCalculatableConverter(transformer, binaryOperations);
 string expression = "[3+4(5 /2)+4.5]";
 string ex = "5*(3+2)/2";
-var calculator = new CalculatorUI(parser, expressionConverter);
+var calculator = new CalculatorUI.Implementations.CalculatorUI(parser, expressionConverter);
 Console.WriteLine(calculator.Solve(expression));

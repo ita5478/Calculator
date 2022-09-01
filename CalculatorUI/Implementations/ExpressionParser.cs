@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using Calculator.BL;
 using Calculator.Common.Abstractions;
-using Calculator.Core;
-using ConsoleApp1.Abstractions;
+using CalculatorUI.Abstractions;
 
-namespace ConsoleApp1.Implementations
+namespace CalculatorUI.Implementations
 {
     public class ExpressionParser : IParser<IEnumerable<Token>>
     {

@@ -1,6 +1,6 @@
 ﻿using Calculator.BL;
 
-namespace ConsoleApp1.Abstractions
+namespace CalculatorUI.Abstractions
 {
     public interface ITokenizer
     {

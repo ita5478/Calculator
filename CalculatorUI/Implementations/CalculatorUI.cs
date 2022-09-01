@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Calculator.BL.Implementations;
-using ConsoleApp1.Abstractions;
+﻿using Calculator.BL.Implementations;
+using CalculatorUI.Abstractions;
 
-namespace ConsoleApp1.Implementations
+namespace CalculatorUI.Implementations
 {
     public class CalculatorUI : ICalculatorUI
     {
