@@ -8,17 +8,18 @@ namespace CalculatorUI.Implementations
 {
     public class ExpressionParser : IParser<IEnumerable<Token>>
     {
-        private const string EXPRESSION_SPLITTING_REGEX = @"([*+/\-)(])|([0-9.]+|.)";
         private readonly ITokenizer _tokenizer;
+        private readonly string _parsingRegex;
 
-        public ExpressionParser(ITokenizer tokenizer)
+        public ExpressionParser(string parserRegex, ITokenizer tokenizer)
         {
             _tokenizer = tokenizer;
+            _parsingRegex = parserRegex;
         }
 
         public IEnumerable<Token> Parse(string input)
         {
-            var tokens = Regex.Split(input, EXPRESSION_SPLITTING_REGEX)
+            var tokens = Regex.Split(input, _parsingRegex)
                 .Where(rawToken => !string.IsNullOrEmpty(rawToken) && !string.IsNullOrWhiteSpace(rawToken))
                 .Select(token => _tokenizer.Tokenize(token))
                 .ToArray();

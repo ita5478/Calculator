@@ -37,6 +37,7 @@ namespace Calculator.BL.Implementations
                     case TokenType.Number:
                         output.Enqueue(token);
                         break;
+                    case TokenType.UnaryOperation:
                     case TokenType.OpeningBracket:
                         operators.Push(token);
                         break;
@@ -50,8 +51,12 @@ namespace Calculator.BL.Implementations
                         {
                             throw new OpeningBracketMissingException();
                         }
-
                         operators.Pop();
+
+                        if (operators.TryPeek(out var o) && o.Type is TokenType.UnaryOperation)
+                        {
+                            output.Enqueue(operators.Pop());
+                        }
                         break;
                 }
             }

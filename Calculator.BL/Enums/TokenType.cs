@@ -4,6 +4,7 @@
     {
         Number,
         BinaryOperation,
+        UnaryOperation,
         OpeningBracket,
         ClosingBracket,
     }
