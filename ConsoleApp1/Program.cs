@@ -32,5 +32,5 @@ var transformer = new ShuntingYardTransformer(operationsPrecedence);
 var expressionConverter = new ExpressionToCalculatableConverter(transformer, binaryOperations);
 string expression = "[3+4(5 /2)+4.5]";
 string ex = "5*(3+2)/2";
-var calculator = new CalculatorUI.Implementations.CalculatorUI(parser, expressionConverter);
+var calculator = new CalculatorUi(parser, expressionConverter);
 Console.WriteLine(calculator.Solve(expression));

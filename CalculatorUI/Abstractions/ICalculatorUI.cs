@@ -1,6 +1,6 @@
 ﻿namespace CalculatorUI.Abstractions
 {
-    public interface ICalculatorUI
+    public interface ICalculatorUi
     {
         string Solve(string expression);
     }

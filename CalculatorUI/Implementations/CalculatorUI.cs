@@ -3,12 +3,12 @@ using CalculatorUI.Abstractions;
 
 namespace CalculatorUI.Implementations
 {
-    public class CalculatorUI : ICalculatorUI
+    public class CalculatorUi : ICalculatorUi
     {
         private readonly ExpressionParser _parser;
         private readonly ExpressionToCalculatableConverter _expressionConverter;
 
-        public CalculatorUI(
+        public CalculatorUi(
             ExpressionParser parser,
             ExpressionToCalculatableConverter converter)
         {
