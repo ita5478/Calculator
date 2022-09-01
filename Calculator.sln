@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.WebApi", "Calcul
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.UI", "Calculator.UI\Calculator.UI.csproj", "{53CCCB57-5153-4FFE-9F67-B14F221C81AA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Calculator.TextBasedUI", "Calculator.TextBasedUI", "{DCED6C3B-0018-40CB-B54A-BD588E3D9CD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC0A14B7-B360-422D-9F0D-6E51EA4AB323} = {DCED6C3B-0018-40CB-B54A-BD588E3D9CD6}
+		{491D539F-F110-4B46-AD6D-EBB693600D8F} = {DCED6C3B-0018-40CB-B54A-BD588E3D9CD6}
+		{53CCCB57-5153-4FFE-9F67-B14F221C81AA} = {DCED6C3B-0018-40CB-B54A-BD588E3D9CD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE85046F-EC42-4C87-9021-DDB829465D95}
