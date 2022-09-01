@@ -1,4 +1,5 @@
 ﻿using Calculator.BL.Abstractions;
+using Calculator.BL.Exceptions;
 using Calculator.Core.Abstractions;
 
 namespace Calculator.BL.Implementations.TokenActionHandlers
@@ -14,10 +15,17 @@ namespace Calculator.BL.Implementations.TokenActionHandlers
 
         public void HandleAction(Token token, Stack<ICalculatable> operands)
         {
-            var factory = _binaryOperationsFactories[token.Value];
-            var rightOperand = operands.Pop();
-            var leftOperand = operands.Pop();
-            operands.Push(factory.Create(leftOperand, rightOperand));
+            try
+            {
+                var factory = _binaryOperationsFactories[token.Value];
+                var rightOperand = operands.Pop();
+                var leftOperand = operands.Pop();
+                operands.Push(factory.Create(leftOperand, rightOperand));
+            }
+            catch (InvalidOperationException)
+            {
+                throw new MissingOperandException();
+            }
         }
     }
 }
