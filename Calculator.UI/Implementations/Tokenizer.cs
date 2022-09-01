@@ -1,10 +1,10 @@
 ﻿using Calculator.BL;
 using Calculator.BL.Enums;
 using Calculator.Common.Abstractions;
-using CalculatorUI.Abstractions;
-using CalculatorUI.Exceptions;
+using Calculator.UI.Abstractions;
+using Calculator.UI.Exceptions;
 
-namespace CalculatorUI.Implementations
+namespace Calculator.UI.Implementations
 {
     public class Tokenizer : ITokenizer
     {

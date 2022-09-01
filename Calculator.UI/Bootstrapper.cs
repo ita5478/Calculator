@@ -5,9 +5,9 @@ using Calculator.BL.Implementations.TokenActionHandlers;
 using Calculator.Core.Abstractions;
 using Calculator.Core.Implementations.BinaryOperationFactories;
 using Calculator.Core.Implementations.UnaryOperationFactories;
-using CalculatorUI.Implementations;
+using Calculator.UI.Implementations;
 
-namespace ConsoleApp1
+namespace Calculator.UI
 {
     public class Bootstrapper
     {

@@ -1,6 +1,6 @@
 ﻿using Calculator.Common.Abstractions;
 
-namespace CalculatorUI.Implementations
+namespace Calculator.UI.Implementations
 {
     public class NumbersValidator : IValidator<string>
     {
