@@ -28,7 +28,7 @@ namespace Calculator.BL.Implementations
                 {
                     case TokenType.BinaryOperation:
                         while (operators.TryPeek(out var topOperator) && topOperator.Type is not TokenType.OpeningBracket &&
-                               _precedenceOrder[topOperator.Value].Precedence > _precedenceOrder[token.Value].Precedence)
+                               _precedenceOrder[topOperator.Value].Precedence >= _precedenceOrder[token.Value].Precedence)
                         {
                             output.Enqueue(operators.Pop());
                         }
