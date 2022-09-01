@@ -2,7 +2,12 @@
 {
     public class OpeningBracketMissingException : Exception
     {
-        public OpeningBracketMissingException() : base("An opening bracket is missing.")
+        public OpeningBracketMissingException() : base()
+        {
+        }
+
+        public OpeningBracketMissingException(string missingBracket) : base(
+            $"Opening bracket {missingBracket} is missing.")
         {
         }
     }

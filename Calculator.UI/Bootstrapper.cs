@@ -58,7 +58,7 @@ namespace Calculator.UI
 
             var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), unaryOperations.Keys.ToList(), bracketPairs);
             var parser = new ExpressionParser(expressionSplittingRegex, tokenizer);
-            var transformer = new ShuntingYardTransformer(operationsPrecedence);
+            var transformer = new ShuntingYardTransformer(operationsPrecedence, bracketPairs);
             var expressionConverter = new ExpressionToCalculatableConverter(transformer, tokenActionHandler);
             var calculator = new CalculatorUi(parser, expressionConverter);
 
