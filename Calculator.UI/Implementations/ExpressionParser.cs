@@ -2,9 +2,9 @@
 using System.Text.RegularExpressions;
 using Calculator.BL;
 using Calculator.Common.Abstractions;
-using CalculatorUI.Abstractions;
+using Calculator.UI.Abstractions;
 
-namespace CalculatorUI.Implementations
+namespace Calculator.UI.Implementations
 {
     public class ExpressionParser : IParser<IEnumerable<Token>>
     {

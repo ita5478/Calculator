@@ -1,7 +1,7 @@
 ﻿using Calculator.BL.Implementations;
-using CalculatorUI.Abstractions;
+using Calculator.UI.Abstractions;
 
-namespace CalculatorUI.Implementations
+namespace Calculator.UI.Implementations
 {
     public class CalculatorUi : ICalculatorUi
     {

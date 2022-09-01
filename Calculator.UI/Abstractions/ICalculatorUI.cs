@@ -1,4 +1,4 @@
-﻿namespace CalculatorUI.Abstractions
+﻿namespace Calculator.UI.Abstractions
 {
     public interface ICalculatorUi
     {
