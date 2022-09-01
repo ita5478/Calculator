@@ -14,6 +14,7 @@ namespace CalculatorUI.Implementations
         public ExpressionParser(string parserRegex, ITokenizer tokenizer)
         {
             _tokenizer = tokenizer;
+            _parsingRegex = parserRegex;
         }
 
         public IEnumerable<Token> Parse(string input)
