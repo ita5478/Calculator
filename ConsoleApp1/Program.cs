@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ConsoleApp1;
+
+var booter = new Bootstrapper();
+var calculator = booter.Initialize();
+
+while (true)
+{
+    Console.WriteLine("Enter expression:");
+    var expression = Console.ReadLine();
+    Console.WriteLine(calculator.Solve(expression));
+}
