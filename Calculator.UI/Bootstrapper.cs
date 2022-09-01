@@ -1,4 +1,5 @@
-﻿using Calculator.BL.Abstractions;
+﻿using Calculator.BL;
+using Calculator.BL.Abstractions;
 using Calculator.BL.Enums;
 using Calculator.BL.Implementations;
 using Calculator.BL.Implementations.TokenActionHandlers;
@@ -39,10 +40,10 @@ namespace Calculator.UI
                 operationsPrecedence.Add(unaryOperation, unaryOperations[unaryOperation]);
             }
 
-            var brackets = new Dictionary<string, string>()
+            var bracketPairs = new List<BracketPair>()
             {
-                { "(", ")" },
-                { "[", "]" },
+                new BracketPair("(", ")"),
+                new BracketPair("[", "]"),
             };
 
             var tokenActionHandlers = new Dictionary<TokenType, ITokenActionHandler>()
@@ -55,7 +56,7 @@ namespace Calculator.UI
             var tokenActionHandler = new TokenActionHandler(tokenActionHandlers);
             var numbersValidator = new NumbersValidator();
 
-            var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), unaryOperations.Keys.ToList(), brackets);
+            var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), unaryOperations.Keys.ToList(), bracketPairs);
             var parser = new ExpressionParser(expressionSplittingRegex, tokenizer);
             var transformer = new ShuntingYardTransformer(operationsPrecedence);
             var expressionConverter = new ExpressionToCalculatableConverter(transformer, tokenActionHandler);
