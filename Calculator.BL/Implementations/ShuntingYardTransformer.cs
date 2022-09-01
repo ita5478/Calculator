@@ -1,4 +1,5 @@
 ﻿using Calculator.BL.Enums;
+using Calculator.BL.Exceptions;
 using Calculator.Common.Abstractions;
 using Calculator.Core.Abstractions;
 
@@ -47,7 +48,7 @@ namespace Calculator.BL.Implementations
 
                         if (operators.Count == 0)
                         {
-                            // throw exception
+                            throw new OpeningBracketMissingException();
                         }
 
                         operators.Pop();
@@ -57,7 +58,13 @@ namespace Calculator.BL.Implementations
 
             while (operators.Count > 0)
             {
-                output.Enqueue(operators.Pop());
+                var oper = operators.Pop();
+                if (oper.Type is TokenType.OpeningBracket)
+                {
+                    throw new ClosingBracketMissingException();
+                }
+
+                output.Enqueue(oper);
             }
 
             return output.ToList();
