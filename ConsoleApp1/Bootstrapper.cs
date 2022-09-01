@@ -4,6 +4,7 @@ using Calculator.BL.Implementations;
 using Calculator.BL.Implementations.TokenActionHandlers;
 using Calculator.Core.Abstractions;
 using Calculator.Core.Implementations.BinaryOperationFactories;
+using Calculator.Core.Implementations.UnaryOperationFactories;
 using CalculatorUI.Implementations;
 
 namespace ConsoleApp1
@@ -17,6 +18,11 @@ namespace ConsoleApp1
                 {"+", new AdditionFactory()},
                 {"*", new MultiplicationFactory()},
                 {"/", new DivisionFactory()},
+            };
+
+            var unaryOperations = new Dictionary<string, IUnaryOperationFactory>()
+            {
+                {"-", new MinusFactory()},
             };
 
             var operationsPrecedence = binaryOperations.ToDictionary(
@@ -38,7 +44,7 @@ namespace ConsoleApp1
             var tokenActionHandler = new TokenActionHandler(tokenActionHandlers);
             var numbersValidator = new NumbersValidator();
 
-            var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), brackets);
+            var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), unaryOperations.Keys.ToList(), brackets);
             var parser = new ExpressionParser(tokenizer);
             var transformer = new ShuntingYardTransformer(operationsPrecedence);
             var expressionConverter = new ExpressionToCalculatableConverter(transformer, tokenActionHandler);
