@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Data;
+using System.Text.RegularExpressions;
 using Calculator.BL;
 using Calculator.Common.Abstractions;
 using CalculatorUI.Abstractions;
@@ -21,6 +22,11 @@ namespace CalculatorUI.Implementations
                 .Where(rawToken => !string.IsNullOrEmpty(rawToken) && !string.IsNullOrWhiteSpace(rawToken))
                 .Select(token => _tokenizer.Tokenize(token))
                 .ToArray();
+            if (tokens.Length == 0)
+            {
+                throw new InvalidExpressionException("Expression cannot be empty.");
+            }
+
             return tokens;
         }
     }
