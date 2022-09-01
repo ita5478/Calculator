@@ -39,6 +39,7 @@ namespace ConsoleApp1
             {
                 { TokenType.Number, new NumberTokenHandler() },
                 { TokenType.BinaryOperation, new BinaryOperationTokenHandler(binaryOperations) },
+                { TokenType.UnaryOperation , new UnaryOperationTokenHandler(unaryOperations) },
             };
 
             var tokenActionHandler = new TokenActionHandler(tokenActionHandlers);
