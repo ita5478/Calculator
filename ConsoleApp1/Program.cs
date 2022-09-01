@@ -1,4 +1,4 @@
-﻿using CalculatorUI;
+﻿using Calculator.UI;
 
 var booter = new Bootstrapper();
 var calculator = booter.Initialize();

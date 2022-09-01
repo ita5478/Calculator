@@ -1,4 +1,4 @@
-﻿namespace CalculatorUI.Exceptions
+﻿namespace Calculator.UI.Exceptions
 {
     public class InvalidTokenException : Exception
     {
