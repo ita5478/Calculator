@@ -18,16 +18,18 @@ namespace CalculatorUI.Implementations
 
         public string Solve(string expression)
         {
-            try
-            {
-                var tokenExpression = _parser.Parse(expression).ToList();
-                var result = _expressionConverter.Convert(tokenExpression);
-                return $"The result of {expression} is {result.Calculate()}.";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+            //try
+            //{
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw;
+            //    return ex.Message;
+            //}
+            var tokenExpression = _parser.Parse(expression).ToList();
+            var result = _expressionConverter.Convert(tokenExpression);
+            return $"The result of {expression} is {result.Calculate()}.";
         }
     }
 }

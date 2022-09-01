@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Calculator.BL.Abstractions;
 using Calculator.BL.Enums;
 using Calculator.Common.Abstractions;
 using Calculator.Core.Abstractions;
@@ -9,13 +10,13 @@ namespace Calculator.BL.Implementations
     public class ExpressionToCalculatableConverter : IConverter<IList<Token>, ICalculatable>
     {
         private readonly ITransformer<IList<Token>> _transformer;
-        private readonly IDictionary<string, IBinaryOperationFactory> _binaryOperationsFactories;
+        private readonly ITokenActionHandler _tokenActionHandler;
         public ExpressionToCalculatableConverter(
             ITransformer<IList<Token>> shuntingYardTransformer,
-            IDictionary<string, IBinaryOperationFactory> binaryOperationsFactories)
+            ITokenActionHandler tokenActionHandler)
         {
             _transformer = shuntingYardTransformer;
-            _binaryOperationsFactories = binaryOperationsFactories;
+            _tokenActionHandler = tokenActionHandler;
         }
 
         public ICalculatable Convert(IList<Token> from)
@@ -24,19 +25,7 @@ namespace Calculator.BL.Implementations
             var operands = new Stack<ICalculatable>();
             foreach (var token in transformedTokens)
             {
-                switch (token.Type)
-                {
-                    case TokenType.Number:
-                        float number = float.Parse(token.Value);
-                        operands.Push(new CalculatableNumber(number));
-                        break;
-                    case TokenType.BinaryOperation:
-                        var factory = _binaryOperationsFactories[token.Value];
-                        var rightOperand = operands.Pop();
-                        var leftOperand = operands.Pop();
-                        operands.Push(factory.Create(leftOperand, rightOperand));
-                        break;
-                }
+                _tokenActionHandler.HandleAction(token, operands);
             }
 
             return operands.Pop();
