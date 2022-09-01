@@ -13,13 +13,14 @@ namespace ConsoleApp1
     {
         public CalculatorUi Initialize()
         {
-            string expressionSplittingRegex = @"\b(sqrt|abs)\b|([*+/\-)(])|([0-9.]+|.)";
+            string expressionSplittingRegex = @"\b(sqrt|abs)\b|([*^+/\-)(])|([0-9.]+|.)";
 
             var binaryOperations = new Dictionary<string, IBinaryOperationFactory>()
             {
                 {"+", new AdditionFactory()},
                 {"*", new MultiplicationFactory()},
                 {"/", new DivisionFactory()},
+                {"^", new PowerFactory()},
             };
 
             var unaryOperations = new Dictionary<string, IUnaryOperationFactory>()
