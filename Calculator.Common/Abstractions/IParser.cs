@@ -2,7 +2,7 @@
 
 namespace Calculator.Common.Abstractions
 {
-    public interface IParser<T> where  T : IEnumerable
+    public interface IParser<T> where T : IEnumerable
     {
         T Parse(string input);
     }
