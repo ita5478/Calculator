@@ -1,5 +1,5 @@
+using CalculatorUI;
 using CalculatorUI.Abstractions;
-using ConsoleApp1;
 
 var builder = WebApplication.CreateBuilder(args);
 

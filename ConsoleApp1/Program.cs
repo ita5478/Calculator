@@ -1,4 +1,4 @@
-﻿using ConsoleApp1;
+﻿using CalculatorUI;
 
 var booter = new Bootstrapper();
 var calculator = booter.Initialize();

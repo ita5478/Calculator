@@ -7,7 +7,7 @@ using Calculator.Core.Implementations.BinaryOperationFactories;
 using Calculator.Core.Implementations.UnaryOperationFactories;
 using CalculatorUI.Implementations;
 
-namespace ConsoleApp1
+namespace CalculatorUI
 {
     public class Bootstrapper
     {
