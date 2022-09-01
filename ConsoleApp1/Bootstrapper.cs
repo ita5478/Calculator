@@ -13,6 +13,8 @@ namespace ConsoleApp1
     {
         public CalculatorUi Initialize()
         {
+            string expressionSplittingRegex = @"([*+/\-)(])|([0-9.]+|.)";
+
             var binaryOperations = new Dictionary<string, IBinaryOperationFactory>()
             {
                 {"+", new AdditionFactory()},
@@ -46,7 +48,7 @@ namespace ConsoleApp1
             var numbersValidator = new NumbersValidator();
 
             var tokenizer = new Tokenizer(numbersValidator, binaryOperations.Keys.ToList(), unaryOperations.Keys.ToList(), brackets);
-            var parser = new ExpressionParser(tokenizer);
+            var parser = new ExpressionParser(expressionSplittingRegex, tokenizer);
             var transformer = new ShuntingYardTransformer(operationsPrecedence);
             var expressionConverter = new ExpressionToCalculatableConverter(transformer, tokenActionHandler);
             var calculator = new CalculatorUi(parser, expressionConverter);
