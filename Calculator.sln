@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.UI", "Calculator
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Calculator.TextBasedUI", "Calculator.TextBasedUI", "{DCED6C3B-0018-40CB-B54A-BD588E3D9CD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.BlazorUI", "Calculator.BlazorUI\Calculator.BlazorUI\Calculator.BlazorUI.csproj", "{CC4B08AD-EDE2-4C4C-8471-053B91E93360}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.BlazorUI.Client", "Calculator.BlazorUI\Calculator.BlazorUI.Client\Calculator.BlazorUI.Client.csproj", "{D77C2331-C92A-4225-A835-C2528D04E326}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{53CCCB57-5153-4FFE-9F67-B14F221C81AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53CCCB57-5153-4FFE-9F67-B14F221C81AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53CCCB57-5153-4FFE-9F67-B14F221C81AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4B08AD-EDE2-4C4C-8471-053B91E93360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4B08AD-EDE2-4C4C-8471-053B91E93360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4B08AD-EDE2-4C4C-8471-053B91E93360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4B08AD-EDE2-4C4C-8471-053B91E93360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D77C2331-C92A-4225-A835-C2528D04E326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77C2331-C92A-4225-A835-C2528D04E326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77C2331-C92A-4225-A835-C2528D04E326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77C2331-C92A-4225-A835-C2528D04E326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

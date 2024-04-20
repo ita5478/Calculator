@@ -44,6 +44,7 @@ namespace Calculator.UI
             {
                 new BracketPair("(", ")"),
                 new BracketPair("[", "]"),
+                new BracketPair("{", "}"),
             };
 
             var tokenActionHandlers = new Dictionary<TokenType, ITokenActionHandler>()

@@ -1,0 +1,141 @@
+﻿@page "/"
+@rendermode InteractiveAuto
+@inject ICalculatorUi calculator
+@using System
+@using global::Calculator.UI.Abstractions
+
+
+<style>
+    .calculator {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .display {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        text-align: right;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 5px;
+    }
+
+    button {
+        width: 100%;
+        height: 50px;
+        font-size: 1.2rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        transition: background-color 0.3s ease;
+    }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        button:active {
+            background-color: #ccc;
+        }
+
+        button.operator {
+            background-color: #ff9900;
+            color: white;
+        }
+
+            button.operator:hover {
+                background-color: #ff8000;
+            }
+
+</style>
+
+<h3>Calculator</h3>
+
+<input type="text" @bind="Display" readonly />
+
+<div class="buttons">
+    <button @onclick="Clear">C</button>
+    <button @onclick="@(() => AppendNumber("7"))">7</button>
+    <button @onclick="@(() => AppendNumber("8"))">8</button>
+    <button @onclick="@(() => AppendNumber("9"))">9</button>
+    <button @onclick="Add">+</button>
+    <button @onclick="@(() => AppendNumber("4"))">4</button>
+    <button @onclick="@(() => AppendNumber("5"))">5</button>
+    <button @onclick="@(() => AppendNumber("6"))">6</button>
+    <button @onclick="Subtract">-</button>
+    <button @onclick="@(() => AppendNumber("1"))">1</button>
+    <button @onclick="@(() => AppendNumber("2"))">2</button>
+    <button @onclick="@(() => AppendNumber("3"))">3</button>
+    <button @onclick="Multiply">*</button>
+    <button @onclick="@(() => AppendNumber("0"))">0</button>
+    <button @onclick="AppendDecimal">.</button>
+    <button @onclick="Equals">=</button>
+    <button @onclick="Divide">/</button>
+    <button @onclick="Power">^</button>
+    <button @onclick="SquareRoot">√</button>
+</div>
+
+@code {
+    private string Display { get; set; } = "";
+    private char? lastOperation;
+
+    private void Clear()
+    {
+        Display = "";
+        lastOperation = null;
+    }
+
+    private void AppendNumber(string number)
+    {
+        Display += number;
+    }
+
+    private void AppendDecimal()
+    {
+        Display += ".";
+    }
+
+    private void Add()
+    {
+        Display += "+";
+    }
+
+    private void Subtract()
+    {
+        Display += "-";
+    }
+
+    private void Multiply()
+    {
+        Display += "*";
+    }
+
+    private void Divide()
+    {
+        Display += "/";
+    }
+
+    private void Power()
+    {
+        Display += "^";
+    }
+
+    private void SquareRoot()
+    {
+        Display += "sqrt";
+    }
+
+
+    private void Equals()
+    {
+        Display = calculator.Solve(Display);
+    }
+}
