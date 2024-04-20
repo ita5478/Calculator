@@ -1,8 +1,6 @@
-using Calculator.BlazorUI.Client.Pages;
 using Calculator.BlazorUI.Components;
 using Calculator.UI;
 using Calculator.UI.Abstractions;
-using Calculator.UI.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,11 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.Services.AddSingleton<ICalculatorUi>((_) =>
-{
-    var booter = new Bootstrapper();
-    return booter.Initialize();
-});
+builder.Services.AddSingleton<ICalculatorUi>(Bootstrapper.Initialize());
 
 
 var app = builder.Build();

@@ -12,7 +12,7 @@ namespace Calculator.UI
 {
     public class Bootstrapper
     {
-        public CalculatorUi Initialize()
+        public static CalculatorUi Initialize()
         {
             string expressionSplittingRegex = @"\b(sqrt|abs)\b|([*^+/\-)(])|([0-9.]+|.)";
 

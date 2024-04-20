@@ -16,18 +16,12 @@ namespace Calculator.UI.Implementations
             _expressionConverter = converter;
         }
 
-        public string Solve(string expression)
+        public float Solve(string expression)
         {
-            try
-            {
-                var tokenExpression = _parser.Parse(expression).ToList();
-                var result = _expressionConverter.Convert(tokenExpression);
-                return $"The result of {expression} is {result.Calculate()}.";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+            var tokenExpression = _parser.Parse(expression).ToList();
+            var result = _expressionConverter.Convert(tokenExpression);
+
+            return result.Calculate();
         }
     }
 }
