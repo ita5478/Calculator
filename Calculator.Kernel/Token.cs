@@ -1,6 +1,6 @@
-﻿using Calculator.BL.Enums;
+﻿using Calculator.Kernel.Enums;
 
-namespace Calculator.BL
+namespace Calculator.Kernel
 {
     public class Token
     {

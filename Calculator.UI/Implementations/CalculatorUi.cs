@@ -1,16 +1,18 @@
-﻿using Calculator.BL.Implementations;
+using Calculator.Common.Abstractions;
+using Calculator.Core.Abstractions;
+using Calculator.Kernel;
 using Calculator.UI.Abstractions;
 
 namespace Calculator.UI.Implementations
 {
     public class CalculatorUi : ICalculatorUi
     {
-        private readonly ExpressionParser _parser;
-        private readonly ExpressionToCalculatableConverter _expressionConverter;
+        private readonly IParser<IEnumerable<Token>> _parser;
+        private readonly IConverter<IList<Token>, ICalculatable> _expressionConverter;
 
         public CalculatorUi(
-            ExpressionParser parser,
-            ExpressionToCalculatableConverter converter)
+            IParser<IEnumerable<Token>> parser,
+            IConverter<IList<Token>, ICalculatable> converter)
         {
             _parser = parser;
             _expressionConverter = converter;

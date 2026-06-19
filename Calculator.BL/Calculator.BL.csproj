@@ -1,14 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Calculator.Common\Calculator.Common.csproj" />
     <ProjectReference Include="..\Calculator.Core\Calculator.Core.csproj" />
+    <ProjectReference Include="..\Calculator.Kernel\Calculator.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

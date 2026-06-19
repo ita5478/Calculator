@@ -1,6 +1,7 @@
 ﻿using Calculator.BL.Abstractions;
-using Calculator.BL.Enums;
 using Calculator.Core.Abstractions;
+using Calculator.Kernel;
+using Calculator.Kernel.Enums;
 
 namespace Calculator.BL.Implementations.TokenActionHandlers
 {
