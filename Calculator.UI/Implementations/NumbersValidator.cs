@@ -1,4 +1,5 @@
-﻿using Calculator.Common.Abstractions;
+using Calculator.Common.Abstractions;
+using System.Globalization;
 
 namespace Calculator.UI.Implementations
 {
@@ -6,7 +7,9 @@ namespace Calculator.UI.Implementations
     {
         public bool Validate(string value)
         {
-            return float.TryParse(value, out _);
+            return float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var result)
+                && !float.IsNaN(result)
+                && !float.IsInfinity(result);
         }
     }
 }

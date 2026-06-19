@@ -2,6 +2,7 @@
 using Calculator.BL.Exceptions;
 using Calculator.Common.Abstractions;
 using Calculator.Core.Abstractions;
+using Calculator.Kernel;
 
 namespace Calculator.BL.Implementations
 {
@@ -29,6 +30,11 @@ namespace Calculator.BL.Implementations
             if (operands.Count > 1)
             {
                 throw new MissingOperatorException();
+            }
+
+            if (operands.Count == 0)
+            {
+                throw new MissingOperandException();
             }
 
             return operands.Pop();
