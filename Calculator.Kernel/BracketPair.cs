@@ -1,4 +1,4 @@
-﻿namespace Calculator.BL
+﻿namespace Calculator.Kernel
 {
     public class BracketPair
     {

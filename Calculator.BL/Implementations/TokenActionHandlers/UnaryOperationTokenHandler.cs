@@ -1,6 +1,7 @@
 ﻿using Calculator.BL.Abstractions;
 using Calculator.BL.Exceptions;
 using Calculator.Core.Abstractions;
+using Calculator.Kernel;
 
 namespace Calculator.BL.Implementations.TokenActionHandlers
 {

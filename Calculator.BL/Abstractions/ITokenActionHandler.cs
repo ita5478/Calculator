@@ -1,4 +1,5 @@
 ﻿using Calculator.Core.Abstractions;
+using Calculator.Kernel;
 
 namespace Calculator.BL.Abstractions
 {

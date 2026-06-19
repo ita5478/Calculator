@@ -1,4 +1,4 @@
-﻿namespace Calculator.BL.Enums
+﻿namespace Calculator.Kernel.Enums
 {
     public enum TokenType
     {
