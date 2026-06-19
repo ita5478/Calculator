@@ -9,8 +9,9 @@ It parses an infix math expression (e.g. `2 + sqrt(16) * (3 ^ 2)`), converts it 
 using the [Shunting-Yard algorithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm),
 builds a tree of `ICalculatable` nodes, and evaluates it.
 
-For a detailed, file-by-file walkthrough of how a request flows through the system, see
-[CODEMAP.md](CODEMAP.md).
+The requirements this project implements are written up as a progressive design exercise in
+[EXERCISE.md](EXERCISE.md). For a detailed, file-by-file walkthrough of how a request flows
+through the system, see [CODEMAP.md](CODEMAP.md).
 
 ## Supported syntax
 
