@@ -1,4 +1,5 @@
 ﻿using Calculator.Core.Abstractions;
+using Calculator.Core.Exceptions;
 
 namespace Calculator.Core.Implementations.UnaryOperations
 {
@@ -10,7 +11,13 @@ namespace Calculator.Core.Implementations.UnaryOperations
 
         public override float Calculate()
         {
-            return MathF.Sqrt(Operand.Calculate());
+            var value = Operand.Calculate();
+            if (value < 0)
+            {
+                throw new NegativeSquareRootException();
+            }
+
+            return MathF.Sqrt(value);
         }
     }
 }
