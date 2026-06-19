@@ -77,20 +77,20 @@
     <button @onclick="Multiply">*</button>
     <button @onclick="@(() => AppendNumber("0"))">0</button>
     <button @onclick="AppendDecimal">.</button>
-    <button @onclick="Equals">=</button>
+    <button @onclick="Calculate">=</button>
     <button @onclick="Divide">/</button>
     <button @onclick="Power">^</button>
     <button @onclick="SquareRoot">√</button>
+    <button @onclick="@(() => AppendNumber("("))">(</button>
+    <button @onclick="@(() => AppendNumber(")"))">)</button>
 </div>
 
 @code {
     private string Display { get; set; } = "";
-    private char? lastOperation;
 
     private void Clear()
     {
         Display = "";
-        lastOperation = null;
     }
 
     private void AppendNumber(string number)
@@ -130,12 +130,19 @@
 
     private void SquareRoot()
     {
-        Display += "sqrt";
+        Display += "sqrt(";
     }
 
 
-    private void Equals()
+    private void Calculate()
     {
-        Display = calculator.Solve(Display).ToString();
+        try
+        {
+            Display = calculator.Solve(Display).ToString();
+        }
+        catch (Exception ex)
+        {
+            Display = $"Error: {ex.Message}";
+        }
     }
 }
