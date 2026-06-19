@@ -2,10 +2,10 @@
 {
     public enum TokenType
     {
-        Number,
-        BinaryOperation,
-        UnaryOperation,
-        OpeningBracket,
-        ClosingBracket,
+        Number = 0,
+        BinaryOperation = 1,
+        UnaryOperation = 2,
+        OpeningBracket = 3,
+        ClosingBracket = 4,
     }
 }

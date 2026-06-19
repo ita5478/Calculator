@@ -15,9 +15,17 @@ namespace Calculator.WebApi.Controllers
         }
 
         [HttpPost(Name = "Calculate")]
-        public string Calculate([FromBody] string expression)
+        public IActionResult Calculate([FromBody] string expression)
         {
-            return _calculator.Solve(expression);
+            try
+            {
+                var result = _calculator.Solve(expression);
+                return Ok(result.ToString());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

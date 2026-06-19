@@ -2,6 +2,6 @@
 {
     public interface ICalculatorUi
     {
-        string Solve(string expression);
+        float Solve(string expression);
     }
 }

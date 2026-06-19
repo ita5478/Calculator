@@ -12,7 +12,7 @@ namespace Calculator.UI
 {
     public class Bootstrapper
     {
-        public CalculatorUi Initialize()
+        public static CalculatorUi Initialize()
         {
             string expressionSplittingRegex = @"\b(sqrt|abs)\b|([*^+/\-)(])|([0-9.]+|.)";
 
@@ -44,6 +44,7 @@ namespace Calculator.UI
             {
                 new BracketPair("(", ")"),
                 new BracketPair("[", "]"),
+                new BracketPair("{", "}"),
             };
 
             var tokenActionHandlers = new Dictionary<TokenType, ITokenActionHandler>()
