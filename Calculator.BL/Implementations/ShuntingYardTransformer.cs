@@ -1,7 +1,8 @@
-﻿using Calculator.BL.Enums;
-using Calculator.BL.Exceptions;
+﻿using Calculator.BL.Exceptions;
 using Calculator.Common.Abstractions;
 using Calculator.Core.Abstractions;
+using Calculator.Kernel;
+using Calculator.Kernel.Enums;
 
 namespace Calculator.BL.Implementations
 {
@@ -22,16 +23,13 @@ namespace Calculator.BL.Implementations
             var output = new Queue<Token>();
             var operators = new Stack<Token>();
 
-            while (input.Count > 0)
+            foreach (var token in input)
             {
-                var token = input[0];
-                input.RemoveAt(0);
-
                 switch (token.Type)
                 {
                     case TokenType.BinaryOperation:
                         while (operators.TryPeek(out var topOperator) && topOperator.Type is not TokenType.OpeningBracket &&
-                               _precedenceOrder[topOperator.Value].Precedence >= _precedenceOrder[token.Value].Precedence)
+                               ShouldPopOperator(topOperator.Value, token.Value))
                         {
                             output.Enqueue(operators.Pop());
                         }
@@ -86,6 +84,20 @@ namespace Calculator.BL.Implementations
             }
 
             return output.ToList();
+        }
+
+        private bool ShouldPopOperator(string topOperator, string currentOperator)
+        {
+            var topPrecedence = _precedenceOrder[topOperator].Precedence;
+            var currentPrecedence = _precedenceOrder[currentOperator].Precedence;
+
+            if (topPrecedence > currentPrecedence)
+            {
+                return true;
+            }
+
+            return topPrecedence == currentPrecedence &&
+                   _precedenceOrder[currentOperator].Associativity == OperationAssociativity.Left;
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Calculator.Core.Abstractions
+namespace Calculator.Core.Abstractions
 {
-    public interface IUnaryOperationFactory : IOperationPrecedence
+    public interface IUnaryOperationFactory
     {
         UnaryOperationBase Create(ICalculatable operand);
     }

@@ -1,24 +1,27 @@
-﻿using Calculator.BL;
-using Calculator.BL.Abstractions;
-using Calculator.BL.Enums;
+﻿using Calculator.BL.Abstractions;
 using Calculator.BL.Implementations;
 using Calculator.BL.Implementations.TokenActionHandlers;
 using Calculator.Core.Abstractions;
+using Calculator.Core.Implementations;
 using Calculator.Core.Implementations.BinaryOperationFactories;
 using Calculator.Core.Implementations.UnaryOperationFactories;
+using Calculator.Kernel;
+using Calculator.Kernel.Enums;
+using Calculator.UI.Abstractions;
 using Calculator.UI.Implementations;
 
 namespace Calculator.UI
 {
     public class Bootstrapper
     {
-        public static CalculatorUi Initialize()
+        public static ICalculatorUi Initialize()
         {
             string expressionSplittingRegex = @"\b(sqrt|abs)\b|([*^+/\-)(])|([0-9.]+|.)";
 
             var binaryOperations = new Dictionary<string, IBinaryOperationFactory>()
             {
                 {"+", new AdditionFactory()},
+                {"-", new SubtractionFactory()},
                 {"*", new MultiplicationFactory()},
                 {"/", new DivisionFactory()},
                 {"^", new PowerFactory()},
@@ -31,14 +34,18 @@ namespace Calculator.UI
                 {"abs", new AbsoluteFactory()},
             };
 
-            var operationsPrecedence = binaryOperations.ToDictionary(
-                item => item.Key,
-                item => item.Value as IOperationPrecedence);
-
-            foreach (var unaryOperation in unaryOperations.Keys)
+            // Parsing metadata is registered separately from the factories so the factories stay
+            // focused on construction. '-' shares an entry for both its binary and unary forms.
+            var operationsPrecedence = new Dictionary<string, IOperationPrecedence>()
             {
-                operationsPrecedence.Add(unaryOperation, unaryOperations[unaryOperation]);
-            }
+                {"+", new OperationPrecedence(0)},
+                {"-", new OperationPrecedence(0)},
+                {"*", new OperationPrecedence(1)},
+                {"/", new OperationPrecedence(1)},
+                {"^", new OperationPrecedence(2, OperationAssociativity.Right)},
+                {"sqrt", new OperationPrecedence(3)},
+                {"abs", new OperationPrecedence(3)},
+            };
 
             var bracketPairs = new List<BracketPair>()
             {

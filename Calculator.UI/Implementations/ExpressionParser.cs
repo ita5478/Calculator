@@ -1,5 +1,5 @@
-﻿using Calculator.BL;
-using Calculator.Common.Abstractions;
+﻿using Calculator.Common.Abstractions;
+using Calculator.Kernel;
 using Calculator.UI.Abstractions;
 using System.Data;
 using System.Text.RegularExpressions;
@@ -19,13 +19,21 @@ namespace Calculator.UI.Implementations
 
         public IEnumerable<Token> Parse(string input)
         {
-            var tokens = Regex.Split(input, _parsingRegex)
+            var rawTokens = Regex.Split(input, _parsingRegex)
                 .Where(rawToken => !string.IsNullOrEmpty(rawToken) && !string.IsNullOrWhiteSpace(rawToken))
-                .Select(token => _tokenizer.Tokenize(token))
                 .ToArray();
-            if (tokens.Length == 0)
+            if (rawTokens.Length == 0)
             {
                 throw new InvalidExpressionException("Expression cannot be empty.");
+            }
+
+            var tokens = new List<Token>(rawTokens.Length);
+            Token? previousToken = null;
+            foreach (var rawToken in rawTokens)
+            {
+                var token = _tokenizer.Tokenize(rawToken, previousToken);
+                tokens.Add(token);
+                previousToken = token;
             }
 
             return tokens;
